@@ -2,14 +2,14 @@
 
 ## Supported Scenarios
 
-- `RecentMessagesDatabaseCheck.swiftpm` is a macOS console playground-style
-  package that imports `AppMessageKit`, opens a Messages `chat.db` read-only,
-  and prints the 10 most recent conversations.
+- `RecentMessagesDatabaseCheck` is a macOS command-line Swift package that
+  imports `AppMessageKit`, opens a Messages `chat.db` read-only, and prints the
+  10 most recent conversations.
 
 To run it against the default live Messages database:
 
 ```bash
-cd Examples/RecentMessagesDatabaseCheck.swiftpm
+cd Examples/RecentMessagesDatabaseCheck
 swift run RecentMessagesDatabaseCheck
 ```
 
@@ -32,6 +32,8 @@ the database.
 
 The checked-in example manifest depends on the public GitHub package URL so it
 can be opened directly in Xcode without requiring access to this local checkout.
+This is a standard Swift package, not a Swift Playgrounds app document. Open
+`Examples/RecentMessagesDatabaseCheck/Package.swift` in Xcode.
 
 To validate the example from the repository root without opening a real Messages
 database:

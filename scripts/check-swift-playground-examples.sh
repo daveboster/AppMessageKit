@@ -3,7 +3,7 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 package_url="https://github.com/daveboster/AppMessageKit.git"
-package_version="0.1.0-alpha.1"
+package_version="0.1.0-alpha.2"
 dependency_mode="public"
 
 if [[ "${1:-}" == "--local-package" ]]; then
@@ -13,7 +13,7 @@ elif [[ "${1:-}" != "" ]]; then
     exit 1
 fi
 
-source_path="$repo_root/Examples/RecentMessagesDatabaseCheck.swiftpm"
+source_path="$repo_root/Examples/RecentMessagesDatabaseCheck"
 
 validate_manifest() {
     local manifest_path="$source_path/Package.swift"
@@ -44,7 +44,7 @@ cleanup_path=""
 
 if [[ "$dependency_mode" == "local" ]]; then
     cleanup_path="$(mktemp -d "${TMPDIR:-/tmp}/RecentMessagesDatabaseCheck.XXXXXX")"
-    build_path="$cleanup_path/RecentMessagesDatabaseCheck.swiftpm"
+    build_path="$cleanup_path/RecentMessagesDatabaseCheck"
     mkdir -p "$build_path"
     rsync -a \
         --exclude '.build' \
