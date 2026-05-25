@@ -10,7 +10,7 @@ watching, plugin hooks, and opt-in local database integration tests.
 ## Package
 
 ```swift
-.package(url: "https://github.com/daveboster/AppMessageKit.git", exact: "0.1.0-alpha.2")
+.package(url: "https://github.com/daveboster/AppMessageKit.git", exact: "0.1.0-alpha.3")
 ```
 
 The library product is `AppMessageKit`.
