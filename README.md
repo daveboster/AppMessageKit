@@ -62,9 +62,15 @@ swift test
 
 ## Examples
 
-`Examples/RecentMessagesDatabaseCheck` is a macOS command-line Swift package
-that imports `AppMessageKit`, verifies read access to a local Messages database,
-and prints the 10 most recent conversations.
+`Examples/RecentMessagesDatabaseCheck.playground` is a macOS Xcode playground
+for interactively running the recent conversations check. It opens in Xcode as
+a macOS playground and defaults to `--help` so first run does not touch any
+Messages database. Edit `runMode` in the playground to pass a copied `chat.db`
+path.
+
+`Examples/RecentMessagesDatabaseCheck` is the underlying macOS command-line
+Swift package that imports `AppMessageKit`, verifies read access to a local
+Messages database, and prints the 10 most recent conversations.
 
 ```bash
 bash scripts/check-swift-playground-examples.sh --local-package
@@ -73,8 +79,10 @@ bash scripts/check-swift-playground-examples.sh --local-package
 The example opens the database read-only. It never sends messages and never
 mutates the database. Its checked-in manifest depends on the public GitHub
 package URL so it can be opened directly in Xcode without requiring access to
-this local checkout. Open `Examples/RecentMessagesDatabaseCheck/Package.swift`
-in Xcode; it is not a Swift Playgrounds app document.
+this local checkout. Open `Examples/RecentMessagesDatabaseCheck.playground` in
+Xcode for the macOS playground, or open
+`Examples/RecentMessagesDatabaseCheck/Package.swift` for the SwiftPM executable
+package.
 
 The public API keeps the iMessage-domain type names from the upstream port,
 such as `IMessageSDK`, `IMessageConfig`, and `IMessageError`.
