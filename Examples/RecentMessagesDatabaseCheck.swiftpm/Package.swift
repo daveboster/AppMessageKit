@@ -14,7 +14,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "../..")
+        .package(url: "https://github.com/daveboster/AppMessageKit.git", exact: "0.1.0-alpha.1")
     ],
     targets: [
         .executableTarget(

@@ -10,7 +10,7 @@ watching, plugin hooks, and opt-in local database integration tests.
 ## Package
 
 ```swift
-.package(url: "https://github.com/daveboster/AppMessageKit.git", branch: "main")
+.package(url: "https://github.com/daveboster/AppMessageKit.git", exact: "0.1.0-alpha.1")
 ```
 
 The library product is `AppMessageKit`.
@@ -67,11 +67,13 @@ playground-style package that imports `AppMessageKit`, verifies read access to a
 local Messages database, and prints the 10 most recent conversations.
 
 ```bash
-bash scripts/check-swift-playground-examples.sh
+bash scripts/check-swift-playground-examples.sh --local-package
 ```
 
 The example opens the database read-only. It never sends messages and never
-mutates the database.
+mutates the database. Its checked-in manifest depends on the public GitHub
+package URL so it can be opened directly in Xcode without requiring access to
+this local checkout.
 
 The public API keeps the iMessage-domain type names from the upstream port,
 such as `IMessageSDK`, `IMessageConfig`, and `IMessageError`.
