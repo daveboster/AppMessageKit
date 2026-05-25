@@ -1,2 +1,3 @@
 .build/
 .swiftpm/
+Examples/*.swiftpm/Package.resolved

@@ -30,9 +30,16 @@ APPMESSAGEKIT_MESSAGES_DB=/path/to/chat.db swift run RecentMessagesDatabaseCheck
 The tool opens the database read-only. It never sends messages and never mutates
 the database.
 
+The checked-in example manifest depends on the public GitHub package URL so it
+can be opened directly in Xcode without requiring access to this local checkout.
+
 To validate the example from the repository root without opening a real Messages
 database:
 
 ```bash
-bash scripts/check-swift-playground-examples.sh
+bash scripts/check-swift-playground-examples.sh --local-package
 ```
+
+The local-package mode copies the example to a temporary directory and rewrites
+that copy to depend on the local AppMessageKit checkout for integration
+validation.
