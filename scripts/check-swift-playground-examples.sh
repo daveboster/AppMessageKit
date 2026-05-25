@@ -68,6 +68,11 @@ validate_playground() {
         echo "error: RecentMessagesDatabaseCheck.playground must not depend only on #filePath for package discovery." >&2
         exit 1
     fi
+
+    if ! grep -q 'packagePathOverride' "$playground_source"; then
+        echo "error: RecentMessagesDatabaseCheck.playground must expose an editable package path override." >&2
+        exit 1
+    fi
 }
 
 validate_manifest

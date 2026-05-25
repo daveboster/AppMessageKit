@@ -7,7 +7,8 @@
   opening and running it in Xcode does not touch a Messages database. Change
   `runMode` to `.copiedDatabase("/path/to/chat.db")` to run against a copied
   database. If Xcode opens the playground from a copied or unusual location, set
-  `APPMESSAGEKIT_RECENT_MESSAGES_PACKAGE` to the
+  `packagePathOverride` in the playground, or set
+  `APPMESSAGEKIT_RECENT_MESSAGES_PACKAGE`, to the
   `Examples/RecentMessagesDatabaseCheck` folder.
 - `RecentMessagesDatabaseCheck` is a macOS command-line Swift package that
   imports `AppMessageKit`, opens a Messages `chat.db` read-only, and prints the

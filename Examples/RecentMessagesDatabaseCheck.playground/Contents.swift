@@ -11,6 +11,9 @@ let runMode: PlaygroundRunMode = .helpOnly
 // let runMode: PlaygroundRunMode = .copiedDatabase("/path/to/copied/chat.db")
 // let runMode: PlaygroundRunMode = .liveDefaultMessagesDatabase
 
+let packagePathOverride: String? = nil
+// let packagePathOverride: String? = "/path/to/AppMessageKit/Examples/RecentMessagesDatabaseCheck"
+
 do {
     let output = try runRecentMessagesCheck(mode: runMode)
     print(output)
@@ -23,7 +26,7 @@ do {
 }
 
 func runRecentMessagesCheck(mode: PlaygroundRunMode) throws -> String {
-    let packageURL = try recentMessagesPackageURL(context: .current)
+    let packageURL = try recentMessagesPackageURL(context: .current, packagePathOverride: packagePathOverride)
     var arguments = [
         "swift",
         "run",
@@ -66,9 +69,13 @@ struct PlaygroundRuntimeContext {
     }
 }
 
-private func recentMessagesPackageURL(context: PlaygroundRuntimeContext) throws -> URL {
+private func recentMessagesPackageURL(context: PlaygroundRuntimeContext, packagePathOverride: String?) throws -> URL {
     let fileManager = FileManager.default
     var candidates: [URL] = []
+
+    if let packagePathOverride, !packagePathOverride.isEmpty {
+        candidates.append(URL(fileURLWithPath: packagePathOverride, isDirectory: true))
+    }
 
     if let override = context.environment["APPMESSAGEKIT_RECENT_MESSAGES_PACKAGE"], !override.isEmpty {
         candidates.append(URL(fileURLWithPath: override, isDirectory: true))
@@ -176,7 +183,7 @@ enum PlaygroundCommandError: Error, CustomStringConvertible {
             return """
             Missing RecentMessagesDatabaseCheck Package.swift.
 
-            Keep this playground next to Examples/RecentMessagesDatabaseCheck, or set APPMESSAGEKIT_RECENT_MESSAGES_PACKAGE to the package folder.
+            Keep this playground next to Examples/RecentMessagesDatabaseCheck, edit packagePathOverride, or set APPMESSAGEKIT_RECENT_MESSAGES_PACKAGE to the package folder.
 
             Checked:
             \(paths.joined(separator: "\n"))
