@@ -3,7 +3,7 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 package_url="https://github.com/daveboster/AppMessageKit.git"
-package_version="0.1.0-alpha.2"
+package_version="0.1.0-alpha.3"
 dependency_mode="public"
 
 if [[ "${1:-}" == "--local-package" ]]; then
@@ -55,6 +55,7 @@ if [[ "$dependency_mode" == "local" ]]; then
     perl -0pi -e "s#\\.package\\(url: \"$package_url\", exact: \"$package_version\"\\)#.package(name: \"AppMessageKit\", path: \"$repo_root\")#" "$build_path/Package.swift"
 fi
 
+rm -rf "$build_path/.build"
 swift test --package-path "$build_path"
 swift run --package-path "$build_path" RecentMessagesDatabaseCheck --help
 
