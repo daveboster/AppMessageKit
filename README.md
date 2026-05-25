@@ -60,6 +60,19 @@ CLANG_MODULE_CACHE_PATH=/private/tmp/clang-module-cache \
 swift test
 ```
 
+## Examples
+
+`Examples/RecentMessagesDatabaseCheck.swiftpm` is a macOS console
+playground-style package that imports `AppMessageKit`, verifies read access to a
+local Messages database, and prints the 10 most recent conversations.
+
+```bash
+bash scripts/check-swift-playground-examples.sh
+```
+
+The example opens the database read-only. It never sends messages and never
+mutates the database.
+
 The public API keeps the iMessage-domain type names from the upstream port,
 such as `IMessageSDK`, `IMessageConfig`, and `IMessageError`.
 
