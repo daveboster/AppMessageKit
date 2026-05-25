@@ -53,7 +53,7 @@ Create `contents.xcplayground` with Xcode's macOS playground shape:
 Create `Contents.swift` that:
 - imports `Foundation`
 - defaults to `PlaygroundRunMode.helpOnly`
-- resolves the sibling `RecentMessagesDatabaseCheck` package from `#filePath`
+- resolves the sibling `RecentMessagesDatabaseCheck` package from a runtime context because Xcode playgrounds can expose a synthetic `#filePath`
 - runs `/usr/bin/xcrun swift run --package-path <package> RecentMessagesDatabaseCheck --help` by default
 - allows an explicit copied database path through `.copiedDatabase("/path/to/chat.db")`
 - keeps live `~/Library/Messages/chat.db` access behind `.liveDefaultMessagesDatabase`

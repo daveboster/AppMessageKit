@@ -66,7 +66,9 @@ swift test
 for interactively running the recent conversations check. It opens in Xcode as
 a macOS playground and defaults to `--help` so first run does not touch any
 Messages database. Edit `runMode` in the playground to pass a copied `chat.db`
-path.
+path. If Xcode opens the playground from a copied or unusual location, set
+`APPMESSAGEKIT_RECENT_MESSAGES_PACKAGE` to the
+`Examples/RecentMessagesDatabaseCheck` folder.
 
 `Examples/RecentMessagesDatabaseCheck` is the underlying macOS command-line
 Swift package that imports `AppMessageKit`, verifies read access to a local

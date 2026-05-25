@@ -1,3 +1,5 @@
+.DS_Store
 .build/
 .swiftpm/
 Examples/*/Package.resolved
+**/*.playground/playground.xcworkspace/

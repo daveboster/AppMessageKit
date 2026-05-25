@@ -63,6 +63,11 @@ validate_playground() {
         echo "error: RecentMessagesDatabaseCheck.playground must support an explicit copied database path." >&2
         exit 1
     fi
+
+    if ! grep -q 'PlaygroundRuntimeContext' "$playground_source"; then
+        echo "error: RecentMessagesDatabaseCheck.playground must not depend only on #filePath for package discovery." >&2
+        exit 1
+    fi
 }
 
 validate_manifest
@@ -93,7 +98,7 @@ fi
 rm -rf "$build_path/.build"
 swift test --package-path "$build_path"
 swift run --package-path "$build_path" RecentMessagesDatabaseCheck --help
-swift "$playground_path/Contents.swift"
+APPMESSAGEKIT_PLAYGROUND_EXIT_ON_FAILURE=1 swift "$playground_path/Contents.swift"
 
 if [[ -n "$cleanup_path" ]]; then
     rm -rf "$cleanup_path"
